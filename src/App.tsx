@@ -1,26 +1,17 @@
 import React from 'react';
-import logo from './logo.svg';
+import SearchBar from './SearchBar/SearchBar';
+import Map from './Map/Map';
 import './App.css';
 
 function App() {
+  const [query, setQuery] = React.useState("858 Coleman Ave");
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <SearchBar {...{query, setQuery}} />
+      <Map />
     </div>
   );
-}
+};
 
 export default App;
