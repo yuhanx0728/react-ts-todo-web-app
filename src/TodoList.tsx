@@ -1,10 +1,10 @@
 import { TodoListItem } from './TodoListItem';
 
-export const TodoList = ({ items, handleClick }: TodoListProps) => {
+export const TodoList = ({ items, handleToggle, handleDelete }: TodoListProps) => {
   return (
     <ul>
       { items.map((item, idx) => (
-          <TodoListItem key={idx} {...item} handleClick={handleClick} />
+          <TodoListItem key={idx} {...item} {...{handleToggle, handleDelete}} />
         ))
       }
     </ul>

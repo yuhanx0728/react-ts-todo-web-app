@@ -26,7 +26,7 @@ function reducer(todoItems: TodoListItem[], action: TodoActionType) {
           completed: false
         }
       ];;
-    case 'complete':
+    case 'toggle':
       return todoItems.map(item => {
         if (item.id === action.selectedId) {
           return {
@@ -36,6 +36,9 @@ function reducer(todoItems: TodoListItem[], action: TodoActionType) {
         }
         return item;
       });
+    case 'delete':
+      return todoItems.filter(
+        item => item.id !== action.selectedId);
     default:
       return todoItems;
   }
@@ -44,17 +47,21 @@ function reducer(todoItems: TodoListItem[], action: TodoActionType) {
 function App() {
   const [todoItems, dispatch] = useReducer(reducer, initialItems);
 
-  const toggleTodo: TodoListItemProps["handleClick"] = (selectedId) => {
-    dispatch({ type: "complete", selectedId });
+  const toggleTodo: ToggleTodo = (selectedId) => {
+    dispatch({ type: "toggle", selectedId });
   };
 
   const addTodo: AddTodo = (text) => {
     dispatch({ type: "create", text });
   };
 
+  const deleteTodo: DeleteTodo = (selectedId) => {
+    dispatch({ type: "delete", selectedId });
+  };
+
   return (
     <>
-      <TodoList items={todoItems} handleClick={toggleTodo} />
+      <TodoList items={todoItems} handleToggle={toggleTodo} handleDelete={deleteTodo} />
       <AddTodoForm handleSubmit={addTodo} />
     </>
   )

@@ -4,31 +4,40 @@ interface TodoListItem {
   completed: boolean;
 };
 
-type ToggleTodo = (selectedId: number) => void;
-
 interface TodoListItemProps extends TodoListItem {
-  handleClick: ToggleTodo;
+  handleToggle: ToggleTodo;
+  handleDelete: DeleteTodo;
 };
 
 interface TodoListProps {
   items: TodoListItem[];
-  handleClick: ToggleTodo;
+  handleToggle: ToggleTodo;
+  handleDelete: DeleteTodo;
 };
-
-type AddTodo = (text: string) => void;
 
 interface AddTodoFormProps {
   handleSubmit: AddTodo;
 };
 
-type TodoActionType = CreateAction | CompleteAction;
+type ToggleTodo = (selectedId: number) => void;
+
+type AddTodo = (text: string) => void;
+
+type DeleteTodo = (selectedId: number) => void;
+
+type TodoActionType = CreateAction | ToggleAction | DeleteAction;
 
 type CreateAction = { 
   type: 'create';
   text: string;
 };
 
-type CompleteAction = {
-  type: 'complete';
+type ToggleAction = {
+  type: 'toggle';
   selectedId: number;
 };
+
+type DeleteAction = {
+  type: 'delete';
+  selectedId: number;
+}
