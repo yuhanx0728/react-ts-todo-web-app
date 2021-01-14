@@ -1,12 +1,12 @@
 import { useState, MouseEvent } from 'react';
 
 export const CreateTodoForm = ({ handleCreate }: CreateTodoFormProps) => {
-  const [input, setInput] = useState<string>("");
+  const [input, setInput] = useState<string>('');
 
   const handleClick = (e: MouseEvent) => {
     e.preventDefault();
     handleCreate(input);
-    setInput("");
+    setInput('');
   };
 
   return (
