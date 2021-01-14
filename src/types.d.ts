@@ -7,28 +7,38 @@ interface TodoListItem {
 interface TodoListItemProps extends TodoListItem {
   handleToggle: ToggleTodo;
   handleDelete: DeleteTodo;
+  handleUpdate: UpdateTodo;
 };
 
 interface TodoListProps {
   items: TodoListItem[];
   handleToggle: ToggleTodo;
   handleDelete: DeleteTodo;
+  handleUpdate: UpdateTodo;
 };
 
-interface AddTodoFormProps {
-  handleSubmit: AddTodo;
+interface CreateTodoFormProps {
+  handleCreate: CreateTodo;
 };
+
+type CreateTodo = (text: string) => void;
+
+type UpdateTodo = (selectedId: number, text: string) => void;
 
 type ToggleTodo = (selectedId: number) => void;
 
-type AddTodo = (text: string) => void;
-
 type DeleteTodo = (selectedId: number) => void;
 
-type TodoActionType = CreateAction | ToggleAction | DeleteAction;
+type TodoActionType = CreateAction | UpdateAction | ToggleAction | DeleteAction;
 
 type CreateAction = { 
   type: 'create';
+  text: string;
+};
+
+type UpdateAction = {
+  type: 'update';
+  selectedId: number;
   text: string;
 };
 
@@ -40,4 +50,4 @@ type ToggleAction = {
 type DeleteAction = {
   type: 'delete';
   selectedId: number;
-}
+};

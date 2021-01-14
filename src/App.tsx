@@ -1,6 +1,6 @@
 import { useReducer } from 'react';
 import { TodoList } from './TodoList';
-import { AddTodoForm } from './AddTodoForm';
+import { CreateTodoForm } from './CreateTodoForm';
 
 const initialItems: TodoListItem[] = [
   {
@@ -25,7 +25,17 @@ function reducer(todoItems: TodoListItem[], action: TodoActionType) {
           text: action.text,
           completed: false
         }
-      ];;
+      ];
+    case 'update':
+      return todoItems.map(item => {
+        if (item.id === action.selectedId) {
+          return {
+            ...item,
+            text: action.text
+          }
+        }
+        return item;
+      });
     case 'toggle':
       return todoItems.map(item => {
         if (item.id === action.selectedId) {
@@ -42,27 +52,31 @@ function reducer(todoItems: TodoListItem[], action: TodoActionType) {
     default:
       return todoItems;
   }
-}
+};
 
 function App() {
   const [todoItems, dispatch] = useReducer(reducer, initialItems);
 
-  const toggleTodo: ToggleTodo = (selectedId) => {
-    dispatch({ type: "toggle", selectedId });
-  };
-
-  const addTodo: AddTodo = (text) => {
+  const handleCreate: CreateTodo = (text) => {
     dispatch({ type: "create", text });
   };
 
-  const deleteTodo: DeleteTodo = (selectedId) => {
+  const handleUpdate: UpdateTodo = (selectedId, text) => {
+    dispatch({ type: "update", selectedId, text });
+  };
+
+  const handleToggle: ToggleTodo = (selectedId) => {
+    dispatch({ type: "toggle", selectedId });
+  };
+
+  const handleDelete: DeleteTodo = (selectedId) => {
     dispatch({ type: "delete", selectedId });
   };
 
   return (
     <>
-      <TodoList items={todoItems} handleToggle={toggleTodo} handleDelete={deleteTodo} />
-      <AddTodoForm handleSubmit={addTodo} />
+      <TodoList items={todoItems} {...{handleUpdate, handleToggle, handleDelete}} />
+      <CreateTodoForm handleCreate={handleCreate} />
     </>
   )
 };
