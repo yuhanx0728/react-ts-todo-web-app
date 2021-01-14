@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useReducer } from 'react';
 import { TodoList } from './TodoList';
 import { AddTodoForm } from './AddTodoForm';
 
@@ -15,39 +15,47 @@ const initialItems: TodoListItem[] = [
   }
 ];
 
-function App() {
-  const [todoItems, setTodoItems] = useState<TodoListItem[]>(initialItems);
-
-  const toggleTodo: TodoListItemProps["handleClick"] = (selectedItemId) => {
-    let newTodoItems = todoItems.map(item => {
-      if (item.id === selectedItemId) {
-        return {
-          ...item,
-          completed: !item.completed
+function reducer(todoItems: TodoListItem[], action: TodoActionType) {
+  switch (action.type) {
+    case 'create':
+      return [
+        ...todoItems, 
+        {
+          id: todoItems.length,
+          text: action.text,
+          completed: false
         }
-      }
-      return item;
-    })
-    setTodoItems(newTodoItems);
+      ];;
+    case 'complete':
+      return todoItems.map(item => {
+        if (item.id === action.selectedId) {
+          return {
+            ...item,
+            completed: !item.completed
+          }
+        }
+        return item;
+      });
+    default:
+      return todoItems;
+  }
+}
+
+function App() {
+  const [todoItems, dispatch] = useReducer(reducer, initialItems);
+
+  const toggleTodo: TodoListItemProps["handleClick"] = (selectedId) => {
+    dispatch({ type: "complete", selectedId });
   };
 
   const addTodo: AddTodo = (text) => {
-    console.log("here")
-    let newTodoItems = [
-      ...todoItems, 
-      {
-        id: todoItems.length,
-        text,
-        completed: false
-      }
-    ];
-    setTodoItems(newTodoItems);
+    dispatch({ type: "create", text });
   };
 
   return (
     <>
       <TodoList items={todoItems} handleClick={toggleTodo} />
-      <AddTodoForm handleSubmit={addTodo}/>
+      <AddTodoForm handleSubmit={addTodo} />
     </>
   )
 };

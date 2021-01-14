@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useState, MouseEvent } from 'react';
 
 export const AddTodoForm = ({ handleSubmit }: AddTodoFormProps) => {
   const [input, setInput] = useState<string>("");
 
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handleClick = (e: MouseEvent) => {
     e.preventDefault();
     handleSubmit(input);
     setInput("");
