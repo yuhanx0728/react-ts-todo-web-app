@@ -13,35 +13,23 @@ function App() {
   const dispatch = useDispatch();
 
   const handleCreate = useCallback(
-    (item: TodoListItem) => {
-      dispatch(createTodo(item));
-      console.log(todoItems);
-    },
-    [dispatch, todoItems]
+    (item) => dispatch(createTodo(item))
+    , [dispatch]
   );
 
   const handleToggle = useCallback(
-    (item: TodoListItem) => {
-      dispatch(toggleTodo(item));
-      console.log(todoItems);
-    },
-    [dispatch, todoItems]
+    (item) => dispatch(toggleTodo(item))
+    , [dispatch]
   );
 
   const handleUpdate = useCallback(
-    (item: TodoListItem, updatedText: string) =>{
-      dispatch(updateTodo(item, updatedText));
-      console.log(todoItems);
-    },
-    [dispatch, todoItems]
+    (item, updatedText) => dispatch(updateTodo(item, updatedText))
+    , [dispatch]
   );
 
   const handleDelete = useCallback(
-    (item: TodoListItem) => {
-      dispatch(deleteTodo(item));
-      console.log(todoItems);
-    },
-    [dispatch, todoItems]
+    (item) => dispatch(deleteTodo(item))
+    , [dispatch]
   );
 
   return (
