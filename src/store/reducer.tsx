@@ -20,9 +20,11 @@ const reducer = (
   state: TodoState = initialState,
   action: TodoAction
 ): TodoState => {
+  let newItems: TodoItem[] = state.items;
+
   switch (action.type) {
     case actionTypes.CREATE_TODO:
-      let newItem: TodoListItem = {
+      let newItem: TodoItem = {
         id: uuidv4(),
         text: action.item.text,
         completed: false
@@ -31,8 +33,9 @@ const reducer = (
         ...state,
         items: state.items.concat(newItem),
       };
+
     case actionTypes.TOGGLE_TODO:
-      let toggledItems: TodoListItem[] = state.items.map(item => {
+      newItems = state.items.map(item => {
         if (item.id === action.item.id) {
           return {
             ...item,
@@ -43,10 +46,11 @@ const reducer = (
       });
       return {
         ...state,
-        items: toggledItems
+        items: newItems
       };
+
     case actionTypes.UPDATE_TODO:
-      let updatedItems: TodoListItem[] = state.items.map(item => {
+      newItems = state.items.map(item => {
         if (item.id === action.item.id) {
           return {
             ...item,
@@ -57,15 +61,16 @@ const reducer = (
       });
       return {
         ...state,
-        items: updatedItems
+        items: newItems
       };
+
     case actionTypes.DELETE_TODO:
-      const items: TodoListItem[] = state.items.filter(
+      newItems = state.items.filter(
         item => item.id !== action.item.id
       );
       return {
         ...state,
-        items
+        items: newItems
       };
   }
   return state

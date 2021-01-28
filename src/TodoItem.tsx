@@ -1,13 +1,13 @@
 import { useState } from 'react';
 
 type Props = {
-  item: TodoListItem;
-  handleUpdate: (item: TodoListItem, updatedText: string) => void;
-  handleToggle: (item: TodoListItem) => void;
-  handleDelete: (item: TodoListItem) => void;
+  item: TodoItem;
+  handleUpdate: (item: TodoItem, updatedText: string) => void;
+  handleToggle: (item: TodoItem) => void;
+  handleDelete: (item: TodoItem) => void;
 }
 
-export const TodoListItem = ({ 
+export const TodoItem = ({ 
   item,
   handleToggle,
   handleDelete,

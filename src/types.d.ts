@@ -1,16 +1,16 @@
-interface TodoListItem {
+interface TodoItem {
   id: string;
   text: string;
   completed: boolean;
 };
 
 type TodoState = {
-  items: TodoListItem[];
+  items: TodoItem[];
 };
 
 type TodoAction = {
   type: string;
-  item: TodoListItem;
+  item: TodoItem;
   updatedText?: string;
 };
 

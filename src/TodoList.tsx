@@ -1,17 +1,17 @@
-import { TodoListItem } from './TodoListItem';
+import { TodoItem } from './TodoItem';
 
 type Props = {
-  items: TodoListItem[];
-  handleUpdate: (item: TodoListItem, updatedText: string) => void;
-  handleToggle: (item: TodoListItem) => void;
-  handleDelete: (item: TodoListItem) => void;
+  items: TodoItem[];
+  handleUpdate: (item: TodoItem, updatedText: string) => void;
+  handleToggle: (item: TodoItem) => void;
+  handleDelete: (item: TodoItem) => void;
 }
 
 export const TodoList = ({ items, handleUpdate, handleToggle, handleDelete }: Props) => {
   return (
     <ul>
       { items.map((item, idx) => (
-          <TodoListItem key={idx} {...{item, handleUpdate, handleToggle, handleDelete}} />
+          <TodoItem key={idx} {...{item, handleUpdate, handleToggle, handleDelete}} />
         ))
       }
     </ul>

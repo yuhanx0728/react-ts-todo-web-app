@@ -1,6 +1,6 @@
 import * as actionTypes from "./actionTypes"
 
-export function createTodo(item: TodoListItem) {
+export function createTodo(item: TodoItem) {
   const action: TodoAction = {
     type: actionTypes.CREATE_TODO,
     item
@@ -8,7 +8,7 @@ export function createTodo(item: TodoListItem) {
   return action;
 }
 
-export function toggleTodo(item: TodoListItem) {
+export function toggleTodo(item: TodoItem) {
   const action: TodoAction = {
     type: actionTypes.TOGGLE_TODO,
     item
@@ -16,7 +16,7 @@ export function toggleTodo(item: TodoListItem) {
   return action;
 }
 
-export function updateTodo(item: TodoListItem, updatedText: string) {
+export function updateTodo(item: TodoItem, updatedText: string) {
   const action: TodoAction = {
     type: actionTypes.UPDATE_TODO,
     item,
@@ -25,7 +25,7 @@ export function updateTodo(item: TodoListItem, updatedText: string) {
   return action;
 }
 
-export function deleteTodo(item: TodoListItem) {
+export function deleteTodo(item: TodoItem) {
   const action: TodoAction = {
     type: actionTypes.DELETE_TODO,
     item

@@ -1,17 +1,17 @@
 import { useState, MouseEvent, ChangeEvent } from 'react';
 
 type Props = {
-  handleCreate: (item: TodoListItem) => void;
+  handleCreate: (item: TodoItem) => void;
 };
 
-const initialItem = {
+const initialItem: TodoItem = {
   id: "",
   text: "",
   completed: false
 };
 
 export const CreateTodoForm = ({ handleCreate }: Props) => {
-  const [newItem, setNewItem] = useState<TodoListItem>(initialItem);
+  const [newItem, setNewItem] = useState<TodoItem>(initialItem);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setNewItem({
