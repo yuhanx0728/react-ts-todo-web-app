@@ -51,3 +51,14 @@ type DeleteAction = {
   type: 'delete';
   selectedId: number;
 };
+
+type TodoState = {
+  items: TodoListItem[]
+}
+
+type TodoAction = {
+  type: string
+  article: TodoListItem
+}
+
+type DispatchType = (args: TodoAction) => TodoAction
