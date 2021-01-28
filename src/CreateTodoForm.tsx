@@ -1,17 +1,37 @@
-import { useState, MouseEvent } from 'react';
+import { useState, MouseEvent, ChangeEvent } from 'react';
 
-export const CreateTodoForm = ({ handleCreate }: CreateTodoFormProps) => {
-  const [input, setInput] = useState<string>('');
+type Props = {
+  handleCreate: (item: TodoListItem) => void;
+};
+
+const initialItem = {
+  id: "",
+  text: "",
+  completed: false
+};
+
+export const CreateTodoForm = ({ handleCreate }: Props) => {
+  const [newItem, setNewItem] = useState<TodoListItem>(initialItem);
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setNewItem({
+      ...newItem,
+      text: e.target.value
+    });
+  }
 
   const handleClick = (e: MouseEvent) => {
     e.preventDefault();
-    handleCreate(input);
-    setInput('');
+    handleCreate(newItem);
+    setNewItem({
+      ...newItem,
+      text: ""
+    });
   };
 
   return (
     <form>
-      <input type="text" value={input} onChange={e => setInput(e.target.value)} />
+      <input type="text" value={newItem.text} onChange={handleChange} />
       <button type="submit" onClick={handleClick}>Add Todo</button>
     </form>
   )

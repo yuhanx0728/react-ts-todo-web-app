@@ -1,19 +1,24 @@
 import { useState } from 'react';
 
+type Props = {
+  item: TodoListItem;
+  handleUpdate: (item: TodoListItem, updatedText: string) => void;
+  handleToggle: (item: TodoListItem) => void;
+  handleDelete: (item: TodoListItem) => void;
+}
+
 export const TodoListItem = ({ 
-  id,
-  text,
-  completed,
+  item,
   handleToggle,
   handleDelete,
   handleUpdate
-}: TodoListItemProps) => {
+}: Props) => {
   const [editing, setEditing] = useState(false);
-  const [input, setInput] = useState(text);
+  const [input, setInput] = useState(item.text);
 
   return (
     <li>
-      <button onClick={() => handleDelete(id)}>x</button>
+      <button onClick={() => handleDelete(item)}>x</button>
       {
         editing
         ? <>
@@ -24,18 +29,18 @@ export const TodoListItem = ({
                 onChange={e => setInput(e.target.value)}
               />
             </label>
-            <button onClick={() => {handleUpdate(id, input); setEditing(false);}}>
+            <button onClick={() => {handleUpdate(item, input); setEditing(false);}}>
               finish editing
             </button>          
           </>
         : <>
-            <label style={{ textDecoration: completed ? 'line-through' : undefined }}>
+            <label style={{ textDecoration: item.completed ? 'line-through' : undefined }}>
               <input 
                 type="checkbox"
-                checked={completed}
-                onChange={() => handleToggle(id)}
+                checked={item.completed}
+                onChange={() => handleToggle(item)}
               />
-                {text}
+                {item.text}
             </label>
             <button onClick={() => setEditing(true)}>edit</button>
           </>

@@ -1,25 +1,34 @@
 import * as actionTypes from "./actionTypes"
 
-export function CreateTodo(todo: TodoListItem) {
+export function createTodo(item: TodoListItem) {
   const action: TodoAction = {
     type: actionTypes.CREATE_TODO,
-    article: todo
+    item
   }
-  return simulateHttpRequest(action)
+  return action;
 }
 
-export function removeArticle(todo: TodoListItem) {
+export function toggleTodo(item: TodoListItem) {
+  const action: TodoAction = {
+    type: actionTypes.TOGGLE_TODO,
+    item
+  }
+  return action;
+}
+
+export function updateTodo(item: TodoListItem, updatedText: string) {
+  const action: TodoAction = {
+    type: actionTypes.UPDATE_TODO,
+    item,
+    updatedText
+  }
+  return action;
+}
+
+export function deleteTodo(item: TodoListItem) {
   const action: TodoAction = {
     type: actionTypes.DELETE_TODO,
-    article: todo
+    item
   }
-  return simulateHttpRequest(action)
-}
-
-export function simulateHttpRequest(action: TodoAction) {
-  return (dispatch: DispatchType) => {
-    setTimeout(() => {
-      dispatch(action)
-    }, 500)
-  }
+  return action;
 }
