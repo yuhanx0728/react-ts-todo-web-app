@@ -1,6 +1,22 @@
-# Getting Started with Create React App
+This to-do list app is my attempt to learn Typescript and Redux as a complete beginner.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+With this app, you can create, update, toggle(to mark as complete or incomplete), and delete to-do items.
+
+This project has 3 versions, in chronological order:
+1. [The first version](https://github.com/yuhanx0728/react-ts-todo-web-app/tree/ts-only) used the React Context API for state management.
+2. [The second version](https://github.com/yuhanx0728/react-ts-todo-web-app/tree/sync-redux) switched from Context hooks to Redux, but only supports synchronous redux actions.
+3. [The final version](https://github.com/yuhanx0728/react-ts-todo-web-app/tree/main)(main branch) used `redux-thunk` on top of Redux to support both synchronous and asynchronous actions. Adding and deleting to-do items have a delay of 0.5s to show that asynchronous actions work.
+
+## Useful Documentations
+
+I borrowed code from [this tutotial](https://www.freecodecamp.org/news/how-to-use-redux-in-your-react-typescript-app).
+
+Here are some other resources that helped me understand deeper while I am working on this project:
+1. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then
+2. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/resolve
+3. https://react-redux.js.org/api/hooks
+4. https://github.com/reduxjs/redux-thunk/tree/41aefcc28a80d2b21f8ee1e68639757bf6d7ba49
+5. https://stackoverflow.com/questions/35411423/how-to-dispatch-a-redux-action-with-a-timeout/35415559#35415559
 
 ## Available Scripts
 
@@ -38,9 +54,3 @@ If you aren’t satisfied with the build tool and configuration choices, you can
 Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
