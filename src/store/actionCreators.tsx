@@ -5,7 +5,7 @@ export function createTodo(item: TodoItem) {
     type: actionTypes.CREATE_TODO,
     item
   }
-  return action;
+  return asyncWrapper(action);
 }
 
 export function toggleTodo(item: TodoItem) {
@@ -30,5 +30,12 @@ export function deleteTodo(item: TodoItem) {
     type: actionTypes.DELETE_TODO,
     item
   }
-  return action;
+  return asyncWrapper(action);
 }
+
+const asyncWrapper = (action: TodoAction) => {
+  return (dispatch: DispatchType) =>
+    setTimeout(() => {
+      dispatch(action);
+    }, 500);
+};
