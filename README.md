@@ -3,9 +3,9 @@ This to-do list app is my attempt to learn Typescript and Redux as a complete be
 With this app, you can create, update, toggle(to mark as complete or incomplete), and delete to-do items.
 
 This project has 3 versions, in chronological order:
-1. [The first version](https://github.com/yuhanx0728/react-ts-todo-web-app/tree/ts-only) used the React Context API for state management.
-2. [The second version](https://github.com/yuhanx0728/react-ts-todo-web-app/tree/sync-redux) switched from Context hooks to Redux, but only supports synchronous redux actions.
-3. [The final version](https://github.com/yuhanx0728/react-ts-todo-web-app/tree/main)(main branch) used `redux-thunk` on top of Redux to support both synchronous and asynchronous actions. Adding and deleting to-do items have a delay of 0.5s to show that asynchronous actions work.
+1. [The first version](https://github.com/yuhanx0728/react-ts-todo-web-app/tree/ts-only) uses the React Context API for state management.
+2. [The second version](https://github.com/yuhanx0728/react-ts-todo-web-app/tree/sync-redux) uses Redux instead of Context hooks, but only supports synchronous redux actions.
+3. [The final version](https://github.com/yuhanx0728/react-ts-todo-web-app/tree/main)(main branch) uses `redux-thunk` on top of Redux to support both synchronous and asynchronous actions. Adding and deleting to-do items have a delay of 0.5s to show that asynchronous actions work.
 
 ## Useful Documentations
 
